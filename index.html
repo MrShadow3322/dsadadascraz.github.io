@@ -1,0 +1,63 @@
+<body>
+    <!-- Загрузка -->
+    <div id="loader" class="loader">
+        <img src="https://i.ibb.co/kgxdGqs/RAAAAAAAAAAAATCuette-of-a-rat-on-xl-1024-v1-0-photoaidcom-cropped.png" alt="RatCoin Logo">
+        <p>Загрузка...</p>
+    </div>
+
+    <!-- Главная страница -->
+    <div id="mainPage" class="main" style="display:none;">
+        <div class="balance-window" id="balanceWindow">
+            <p>Ваш баланс: <span id="balance">0</span> RatCoin</p>
+        </div>
+        <div class="logo-container">
+            <img src="https://i.ibb.co/kBhv8HZ/813670.png" alt="Main Logo">
+        </div>
+    </div>
+
+    <!-- Задания -->
+    <div id="tasksPage" class="tasks" style="display:none;">
+        <div class="task">
+            <p>Подпишитесь на наш Telegram канал и получите 500 RatCoin</p>
+            <button id="subscribeBtn">Получить награду</button>
+        </div>
+    </div>
+
+    <!-- Навигация -->
+    <div class="tabs">
+        <button class="tab-btn" onclick="showPage('mainPage')">Главная</button>
+        <button class="tab-btn" onclick="showPage('tasksPage')">Задания</button>
+    </div>
+
+    <!-- Сценарий для переключения вкладок и сохранения состояния -->
+    <script>
+        let balance = 0;
+
+        // Показать страницу
+        function showPage(pageId) {
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('tasksPage').style.display = 'none';
+
+            document.getElementById(pageId).style.display = 'flex';
+        }
+
+        // Имитируем загрузку
+        setTimeout(function() {
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('mainPage').style.display = 'flex';
+        }, 3000);
+
+        // Нажатие на кнопку получения награды
+        document.getElementById('subscribeBtn').addEventListener('click', function() {
+            if (balance === 0) {
+                balance = Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000;
+                document.getElementById('balance').textContent = balance;
+                alert('Вы получили 500 RatCoin');
+            }
+        });
+
+        // Показ главной страницы по умолчанию
+        showPage('loader');
+    </script>
+</body>
